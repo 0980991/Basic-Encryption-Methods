@@ -10,8 +10,6 @@ pf.fillGrid('PLAYFAIR')
 # pf.decrypt([11, 15])
 # pf.decrypt([16, 20])
 # pf.decrypt([21, 25])
-pf.decrypt([5, 25])
-pf.decrypt([25, 5])
 
 # Vertical tests
 # pf.decrypt([1, 21])
@@ -19,6 +17,8 @@ pf.decrypt([25, 5])
 # pf.decrypt([3, 23])
 # pf.decrypt([4, 24])
 # pf.decrypt([5, 25])
+pf.decrypt([25, 5])
+pf.decrypt([5, 25])
 
 # Box tests
 # pf.decrypt([1, 7])

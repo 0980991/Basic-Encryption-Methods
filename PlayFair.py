@@ -42,6 +42,35 @@ class PlayFair:
     def encryptPlayfair(self):
         pass
 
+    def decryptPlayfair(self):
+
+        #----#----#----#----#----#
+        # 1  # 2  # 3  # 4  # 5  #
+        #----#----#----#----#----#
+        # 6  # 7  # 8  # 9  # 10 #
+        #----#----#----#----#----#
+        # 11 # 12 # 13 # 14 # 15 #
+        #----#----#----#----#----#
+        # 16 # 17 # 18 # 19 # 20 #
+        #----#----#----#----#----#
+        # 21 # 22 # 23 # 24 # 25 #
+        #----#----#----#----#----#
+
+        encrypted_text = self.text[0]
+
+        if len(encrypted_text) % 2 != 0:
+            encrypted_text += f'{encrypted_text[len(encrypted_text)-1]}'
+
+        decrypted_text = ''
+
+        pair_index = 0
+        while pair_index < range(len(encrypted_text)):
+            encrypted_pair = '' + encrypted_text[pair_index] + encrypted_text[pair_index + 1]
+            encrypted_values = self.letterToValue(encrypted_pair)
+            decrypted_pair = self.decrypt(encrypted_values)
+            decrypted_text.append(decrypted_pair)
+            pair_index += 2
+
     def letterToValue(self, encrypted_pair):
         index_X = self.grids[1].index(encrypted_pair[0])
         index_Y = self.grids[1].index(encrypted_pair[1])
@@ -62,7 +91,7 @@ class PlayFair:
 
         left_edge = [1, 6, 11, 16, 21]
         top_edge  = [1, 2, 3,  4,  5]
-        
+
         # Check if letters are in the same row
         if (X-1) // 5 == (Y-1) // 5:
             if X in left_edge:
@@ -101,59 +130,9 @@ class PlayFair:
                             Y -= j
 
         if X_Y_swap:
-            print(f'{Y}, {X}')
+            print(f'{Y}, {X}') # Debug purposes
             return [Y, X]
 
-        print(f'{X}, {Y}')
+        print(f'{X}, {Y}') # Debug purposes
         return [X, Y]
 
-    #TODO COunt which Letter is missing to find how to fill the grid
-    def decryptPlayfair(self):
-
-        #----#----#----#----#----#
-        # 1  # 2  # 3  # 4  # 5  #
-        #----#----#----#----#----#
-        # 6  # 7  # 8  # 9  # 10 #
-        #----#----#----#----#----#
-        # 11 # 12 # 13 # 14 # 15 #
-        #----#----#----#----#----#
-        # 16 # 17 # 18 # 19 # 20 #
-        #----#----#----#----#----#
-        # 21 # 22 # 23 # 24 # 25 #
-        #----#----#----#----#----#
-
-        encrypted_text = self.text[0]
-
-
-        grid = [{1  : 'P'}, {2.  : 'L'}, {3.  : 'A'}, {4.  : 'Y'}, {5.  : 'F'},
-                {6  : 'I'}, {7.  : 'R'}, {8.  : 'B'}, {9.  : 'C'}, {10. : 'D'},
-                {11 : 'E'}, {12. : 'G'}, {13. : 'H'}, {14. : 'J'}, {15. : 'K'},
-                {16 : 'M'}, {17. : 'N'}, {18. : 'O'}, {19. : 'Q'}, {20. : 'S'},
-                {21 : 'T'}, {22. : 'U'}, {23. : 'V'}, {24. : 'W'}, {25. : 'X'}]
-
-
-        if len(encrypted_text) % 2 != 0:
-            encrypted_text += f'{encrypted_text[len(encrypted_text)-1]}'
-
-        decrypted_text = ''
-
-        pair_index = 0
-        while pair_index < range(len(encrypted_text)):
-            encrypted_pair = '' + encrypted_text[pair_index] + encrypted_text[pair_index + 1]
-            encrypted_values = self.letterToValue(encrypted_pair)
-            decrypted_pair = self.decrypt(encrypted_values)
-            decrypted_text.append(decrypted_pair)
-            pair_index += 2
-
-        # 1. Divide alphabet letters into 5x5 grid
-        # 2. Skip one letter that is not often used. The receiver MUST know which letter to skip
-
-        # When picking any 2 letters in the grid they will either:
-            # Be in the same row
-                # Decode by finding the letter left to the encrypted letter (X - 1, Y - 1)
-            # Be in the same column
-                # Decode by finding the letter above the encrypted letter (X - 5, Y - 5)
-            # Be the 2 opposite corners of a box
-                # Decode by finding the letter of the other corner on the horizontal (X + (Y % 10 - X % 10), Y - a(Y % 10 - X % 10))
-
-        # IF a msg is uneven fill the last place with an X or Q
