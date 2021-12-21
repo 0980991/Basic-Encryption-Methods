@@ -4,6 +4,22 @@ from PlayFair import PlayFair
 
 pf = PlayFair()
 pf.fillGrid('PLAYFAIR')
+## For visualizing the letter grid
+# row = ''
+# print(pf.grids[1])
+# for i, letter in enumerate(pf.grids[1]):
+#     row += letter + ''
+#     if (i + 1) % 5 == 0:
+#         print(row)
+#         row = ''
+#MAURICES
+#OPLGRDKM
+pf.decryptPlayfair()
+
+# pf.letterToValue(['Q', 'Z'])
+# print(pf.letterToValue(['Q', 'Z']))
+# print(pf.valueToLetter([19, 25]))
+
 # Horizontal tests
 # pf.decrypt([1, 5])
 # pf.decrypt([6, 10])
@@ -17,8 +33,8 @@ pf.fillGrid('PLAYFAIR')
 # pf.decrypt([3, 23])
 # pf.decrypt([4, 24])
 # pf.decrypt([5, 25])
-pf.decrypt([25, 5])
-pf.decrypt([5, 25])
+# pf.decrypt([25, 5])
+# pf.decrypt([5, 25])
 
 # Box tests
 # pf.decrypt([1, 7])
@@ -41,6 +57,3 @@ pf.decrypt([5, 25])
 # pf.decrypt([17, 9])
 
 
-
-# cipher = Ciphers()
-# cipher.decryptPlayfair()

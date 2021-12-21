@@ -19,25 +19,25 @@ class PlayFair:
         self.grids = None
 
     def fillGrid(self, key, removed_letter='X'):
-        grids = [[],[]]
+        self.grids = [[],[]]
 
         # Fills the list of values
         for i in range(25):
-            grids[0].append(i+1)
+            self.grids[0].append(i+1)
 
         # Fills the first squares of the grid with the key
         for letter in key:
-            if letter not in grids[1]:
-                grids[1].append(letter)
+            if letter not in self.grids[1]:
+                self.grids[1].append(letter)
 
         # Fills the rest of the grid with alphabetical characters that aren't in the key
         for i, letter in enumerate(s.ascii_uppercase):
-            if len(grids[1]) > 24:
-                self.grids.append(grids[1])
+            if len(self.grids[1]) > 24:
+                self.grids.append(self.grids[1])
                 break
 
-            if letter not in grids[1] and letter != removed_letter:
-                grids[1].append(s.ascii_uppercase[i])
+            if letter not in self.grids[1] and letter != removed_letter:
+                self.grids[1].append(s.ascii_uppercase[i])
 
     def encryptPlayfair(self):
         pass
@@ -56,26 +56,36 @@ class PlayFair:
         # 21 # 22 # 23 # 24 # 25 #
         #----#----#----#----#----#
 
-        encrypted_text = self.text[0]
-
+        encrypted_text = self.text[1]
+        encrypted_text = 'OPLGRDKM'
         if len(encrypted_text) % 2 != 0:
             encrypted_text += f'{encrypted_text[len(encrypted_text)-1]}'
 
         decrypted_text = ''
 
         pair_index = 0
-        while pair_index < range(len(encrypted_text)):
+        while pair_index < len(encrypted_text):
             encrypted_pair = '' + encrypted_text[pair_index] + encrypted_text[pair_index + 1]
             encrypted_values = self.letterToValue(encrypted_pair)
-            decrypted_pair = self.decrypt(encrypted_values)
-            decrypted_text.append(decrypted_pair)
+            decrypted_values = self.decrypt(encrypted_values)
+            decrypted_pair = self.valueToLetter(decrypted_values)
+            decrypted_text += decrypted_pair[0] + decrypted_pair[1]
             pair_index += 2
 
-    def letterToValue(self, encrypted_pair):
-        index_X = self.grids[1].index(encrypted_pair[0])
-        index_Y = self.grids[1].index(encrypted_pair[1])
+        print(decrypted_text)
 
-        return [self.grids[index_X], self.grids[index_Y]]
+    def valueToLetter(self, decrypted_pair):
+        string_X = self.grids[1][decrypted_pair[0] - 1]
+        string_Y = self.grids[1][decrypted_pair[1] - 1]
+
+        return [string_X, string_Y]
+
+
+    def letterToValue(self, encrypted_pair):
+        index_X = self.grids[1].index(encrypted_pair[0]) + 1
+        index_Y = self.grids[1].index(encrypted_pair[1]) + 1
+
+        return [index_X, index_Y]
 
     def decrypt(self, encrypted_values):
         X = encrypted_values[0]
@@ -130,9 +140,9 @@ class PlayFair:
                             Y -= j
 
         if X_Y_swap:
-            print(f'{Y}, {X}') # Debug purposes
+            #print(f'{Y}, {X}') # Debug purposes
             return [Y, X]
 
-        print(f'{X}, {Y}') # Debug purposes
+        #print(f'{X}, {Y}') # Debug purposes
         return [X, Y]
 
