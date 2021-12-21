@@ -32,6 +32,7 @@ class Ciphers:
         #----#----#----#----#----#
 
         encrypted_text = self.text
+
         grid = [{1  : 'P'}, {2.  : 'L'}, {3.  : 'A'}, {4.  : 'Y'}, {5.  : 'F'},
                 {6  : 'I'}, {7.  : 'R'}, {8.  : 'B'}, {9.  : 'C'}, {10. : 'D'},
                 {11 : 'E'}, {12. : 'G'}, {13. : 'H'}, {14. : 'J'}, {15. : 'K'},
@@ -60,7 +61,7 @@ class Ciphers:
                     for i, dict_key in enumerate(encrypted_dic_items):
                         p = int([key for key in dict_key][0])
                         x_and_y.append(p)
-                
+
                     #if encrypted_dic_items[0][1] + horizontal_step * 5 == row[1]:
                         pass
         # 1. Divide alphabet letters into 5x5 grid
