@@ -1,9 +1,28 @@
 from ciphers import Ciphers
 from PlayFair import PlayFair
+from ROT13 import ROT13
 
 
-pf = PlayFair()
-pf.fillGrid('PLAYFAIR')
+rot = ROT13()
+rot.decryptROT13()
+
+# pf = PlayFair()
+# pf.fillGrid('LAYFAIR', 'P')
+# pf.decryptPlayfair()
+# pf.fillGrid('PLAYFAIR', 'T')
+# pf.decryptPlayfair()
+# pf.fillGrid('PLAFYAIR', 'X')
+# pf.decryptPlayfair()
+# pf.fillGrid('PLAYFAIR', 'T')
+# pf.decryptPlayfair()
+# pf.fillGrid('PLAYFAIR', 'V')
+# pf.decryptPlayfair()
+# pf.fillGrid('PLAFAIR', 'Y')
+# pf.decryptPlayfair()
+
+
+
+
 ## For visualizing the letter grid
 # row = ''
 # print(pf.grids[1])
@@ -14,7 +33,6 @@ pf.fillGrid('PLAYFAIR')
 #         row = ''
 #MAURICES
 #OPLGRDKM
-pf.decryptPlayfair()
 
 # pf.letterToValue(['Q', 'Z'])
 # print(pf.letterToValue(['Q', 'Z']))

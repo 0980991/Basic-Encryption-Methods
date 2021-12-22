@@ -2,7 +2,7 @@ import string as s
 
 class PlayFair:
     def __init__(self):
-        # 1st row missing chars [A, J, W, I]
+        # 1st row missing chars [A, J, W, Y]
         # 2nd row missing chars [E, F, J, T, V, Y]
         # 3rd row missing chars [P, T, X]
         # 4th row missing chars [D, J, M, N, T, W, Y, Z]
@@ -44,20 +44,7 @@ class PlayFair:
 
     def decryptPlayfair(self):
 
-        #----#----#----#----#----#
-        # 1  # 2  # 3  # 4  # 5  #
-        #----#----#----#----#----#
-        # 6  # 7  # 8  # 9  # 10 #
-        #----#----#----#----#----#
-        # 11 # 12 # 13 # 14 # 15 #
-        #----#----#----#----#----#
-        # 16 # 17 # 18 # 19 # 20 #
-        #----#----#----#----#----#
-        # 21 # 22 # 23 # 24 # 25 #
-        #----#----#----#----#----#
-
-        encrypted_text = self.text[1]
-        encrypted_text = 'OPLGRDKM'
+        encrypted_text = self.text[2]
         if len(encrypted_text) % 2 != 0:
             encrypted_text += f'{encrypted_text[len(encrypted_text)-1]}'
 
@@ -80,7 +67,6 @@ class PlayFair:
 
         return [string_X, string_Y]
 
-
     def letterToValue(self, encrypted_pair):
         index_X = self.grids[1].index(encrypted_pair[0]) + 1
         index_Y = self.grids[1].index(encrypted_pair[1]) + 1
@@ -93,6 +79,7 @@ class PlayFair:
 
         X_Y_swap = False
 
+        # swaps X and Y if X < Y to prevent having to write the logic for when X < Y(will swapped back when returned)
         if X > Y:
             temp = X
             X = Y
@@ -140,9 +127,17 @@ class PlayFair:
                             Y -= j
 
         if X_Y_swap:
-            #print(f'{Y}, {X}') # Debug purposes
             return [Y, X]
-
-        #print(f'{X}, {Y}') # Debug purposes
         return [X, Y]
-
+        # Grid for reference
+        #----#----#----#----#----#
+        # 1  # 2  # 3  # 4  # 5  #
+        #----#----#----#----#----#
+        # 6  # 7  # 8  # 9  # 10 #
+        #----#----#----#----#----#
+        # 11 # 12 # 13 # 14 # 15 #
+        #----#----#----#----#----#
+        # 16 # 17 # 18 # 19 # 20 #
+        #----#----#----#----#----#
+        # 21 # 22 # 23 # 24 # 25 #
+        #----#----#----#----#----#
