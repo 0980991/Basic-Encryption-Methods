@@ -1,21 +1,14 @@
 import string as s
 
 class PlayFair:
-    def __init__(self):
+    def __init__(self, text):
         # 1st row missing chars [A, J, W, Y]
         # 2nd row missing chars [E, F, J, T, V, Y]
         # 3rd row missing chars [P, T, X]
         # 4th row missing chars [D, J, M, N, T, W, Y, Z]
         # 5th row missing chars [O, R, S, W, X]
         # 5th row missing chars [C, F, J, T]
-        self.text = ['VUDGHVBBONOVZRKHNIBDLNCVGRPDEXZEVMGKSVBTLIFGITQQO',
-                     'BZBLARLZDLHBURHARLCPIBIZMKQBGXAIMRPNOLWHMCSQ',
-                     'RLZMKUGADGHIQONJDHFMKERLWYDGWVGLBSKQBHCUNUQE',
-                     'ICSOQRRSPBIKRSIEQOGHHAAPLBVGKXAFGFUSVIILKREG',
-                     'TDHABADKVPUZNAGQHVCFHJHDBFYEULITMYHQEIMNGKGU',
-                     'SQKBDYKLMKANURGKGNWYYOOENRIINVXUHPARKKZEHBAE'
-                    ]
-
+        self.text = text
         self.grids = None
 
     def fillGrid(self, key, removed_letter='X'):

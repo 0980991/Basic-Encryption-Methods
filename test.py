@@ -1,10 +1,25 @@
 from ciphers import Ciphers
 from PlayFair import PlayFair
 from ROT13 import ROT13
+from Vigenere import Vigenere
 
+text = ['VUDGHVBBONOVZRKHNIBDLNCVGRPDEXZEVMGKSVBTLIFGITQQO',
+        'BZBLARLZDLHBURHARLCPIBIZMKQBGXAIMRPNOLWHMCSQ',
+        'RLZMKUGADGHIQONJDHFMKERLWYDGWVGLBSKQBHCUNUQE',
+        'ICSOQRRSPBIKRSIEQOGHHAAPLBVGKXAFGFUSVIILKREG',
+        'TDHABADKVPUZNAGQHVCFHJHDBFYEULITMYHQEIMNGKGU',
+        'SQKBDYKLMKANURGKGNWYYOOENRIINVXUHPARKKZEHBAE'
+        ]
 
-rot = ROT13()
-rot.decryptROT13()
+vig = Vigenere('MY NAME IS MAURICE')
+print(vig.encryptVigenere('VIGENERE'))
+vig.text = vig.encryptVigenere('VIGENERE')
+print(vig.decryptVigenere('VIGENERE'))
+
+# rot = ROT13()
+# for i in range(26):
+    # msg = rot.decryptROT13(i)[0]
+    # print(msg)
 
 # pf = PlayFair()
 # pf.fillGrid('LAYFAIR', 'P')
